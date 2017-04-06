@@ -1,9 +1,8 @@
 1
-Aforysm1!!!
+Aforysm1
 AforysmAuthor1
+5
 2
-Poslovica1..
+Poslovica1
 PoslovicaCountry1
-2
-Poslovica2!!!!
-PoslovicaCountry2
+6

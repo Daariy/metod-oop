@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "func.h"
+#include <cstring>
+
 using namespace std;
 
 WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
@@ -20,8 +22,14 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	}
 	case 2:
 	{
-
 		newItem = new Poslovica;
+		newItem->TEXT(ifst);
+		break;
+	}
+	case 3:
+	{
+
+		newItem = new Riddle;
 		newItem->TEXT(ifst);
 		break;
 	}
@@ -31,8 +39,8 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	}
 	}
 	newItem->In(ifst);
+	newItem->setGrade(ifst);
 	return newItem;
-
 }
 bool WisdomItem::Compare(WisdomItem &item2)
 {
@@ -67,17 +75,26 @@ char* WisdomItem::getText()
 {
 	return _text;
 }
+void WisdomItem::setGrade(ifstream &ifst)
+{
+	ifst >> _grade;
+}
+int WisdomItem::getGrade()
+{
+	return _grade;
+}
 void Aforysm::In(ifstream &ifst)
 {
 	ifst.getline(Author, 256);
 }
 void Aforysm::Out(ostream &stream)
 {
-
-	stream << "Following statement is an Aforysm. Its Author is: ";
-	stream << Author << endl;
-	stream << "Its content: ";
-
+	ofst << "Following statement is an Aforysm. Its Author is: ";
+	ofst << Author << endl;
+	ofst << "Its content: ";
+	cout << "Following statement is an Aforysm. Its Author is: ";
+	cout << Author << endl;
+	cout << "Its content: ";
 }
 void Poslovica::In(ifstream &ifst)
 {
@@ -85,10 +102,26 @@ void Poslovica::In(ifstream &ifst)
 }
 void Poslovica::Out(ostream &stream)
 {
-	stream << "Folowing statement is Poslovica. Its Country is: ";
-	stream << Country << endl;
-	stream << "Its content: ";
+	ofst << "Folowing statement is Poslovica. Its Country is: ";
+	ofst << Country << endl;
+	ofst << "Its content: ";
+	cout << "Folowing statement is Poslovica. Its Country is: ";
+	cout << Country << endl;
+	cout << "Its content: ";
+}
+void Riddle::In(ifstream &ifst)
+{
+	ifst.getline(Answer, 256);
+}
+void Riddle::Out(ofstream &ofst)
+{
 
+	ofst << "Following statement is an Riddle. Its Answer is: ";
+	ofst << Answer << endl;
+	ofst << "Its content: ";
+	cout << "Following statement is an Riddle. Its Answer is: ";
+	cout << Answer << endl;
+	cout << "Its content: ";
 }
 
 List::~List()
@@ -145,6 +178,7 @@ int List::size()
 	return _size;
 }
 
+
 void List::Sort()
 {
 	node *s, *ptr;
@@ -190,6 +224,7 @@ void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
 	ofst << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
 	cout << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
 }
+
 void List::In(ifstream &ifst)
 {
 	if (ifst.fail())
@@ -234,6 +269,7 @@ void List::Out(ofstream &ofst)
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
+			this->getCurrentItem()->Out(ofst);
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
 

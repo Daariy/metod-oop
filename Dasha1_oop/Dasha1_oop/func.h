@@ -8,14 +8,17 @@ class WisdomItem
 public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
-	virtual void Out(ostream &stream) = 0;
+	virtual void Out(ofstream &ofst) = 0;
 	void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
 	bool Compare(WisdomItem &item2);
 	char* getText();
+	int getGrade();
+	void setGrade(ifstream &ifst);
 	int CountSighns(char* Text);
 private:
 	char _text[256];
+	int _grade;
 protected:
 	WisdomItem() {};
 	virtual ~WisdomItem() {};
@@ -42,6 +45,18 @@ public:
 	void Out(ostream &stream);
 private:
 	char Country[256];
+};
+
+class Riddle : public WisdomItem
+{
+public:
+	Riddle() {};
+	~Riddle() {};
+	void  In(ifstream &ifst);
+	void Out(ofstream &ofst);
+
+private:
+	char Answer[256];
 };
 
 class List
