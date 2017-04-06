@@ -3,8 +3,8 @@
 #include "stdafx.h"
 #include "fstream"
 #include "func.h"
-using namespace std;
 
+using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -16,11 +16,12 @@ int main(int argc, char* argv[])
 	else
 	{
 		List l;
-		ifstream inputFile(argv[1]);
+		ifstream inputFile(argv[1], ios::in | ios::_Nocreate);
 		l.In(inputFile);
-		ofstream outputFile(argv[2]);
+		l.Sort();
+		ofstream outputFile(argv[2], ios::out | ios::trunc);
 		int des =0 ;
-		cout << "What you want?" << endl << "0-All!" << endl << "1-OnlyAforism!" << endl << "2-OnlyPoslovica!" << endl;
+		cout << "What you want?" << endl << "0-All!" << endl << "1-OnlyAforism!" << endl << "2-OnlyPoslovica!" << endl << "3-OnlyRiddle!" << endl;
 		cout << "Please, Enter number: ";
 		cin >> des;
 		system("cls");
@@ -36,11 +37,14 @@ int main(int argc, char* argv[])
 		{
 			l.OutOnlyPoslovica(outputFile);
 		}
+		if (des==3)
+		{
+			l.OutOnlyRiddle(outputFile);
+		}
 		l.Clear();
+		outputFile.open(argv[2], ios::out | ios::app);
 		l.Out(outputFile);
 	}
-
 	system("Pause");
 	return 0;
 }
-
