@@ -5,7 +5,6 @@
 #include "func.h"
 using namespace std;
 
-
 int main(int argc, char* argv[])
 {
 	if (argc != 3)
@@ -18,6 +17,7 @@ int main(int argc, char* argv[])
 		List l;
 		ifstream inputFile(argv[1], ios::in | ios::_Nocreate);
 		l.In(inputFile);
+		l.Sort();
 		ofstream outputFile(argv[2], ios::out | ios::trunc);
 		l.Out(outputFile);
 		l.Clear();
@@ -26,5 +26,4 @@ int main(int argc, char* argv[])
 	}
 	system("Pause");
 	return 0;
-
 }

@@ -34,10 +34,30 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	newItem->setGrade(ifst);
 	return newItem;
 }
+bool WisdomItem::Compare(WisdomItem &item2)
+{
+	return CountSighns(_text) < item2.CountSighns(item2._text);
+}
 
-void WisdomItem::Out(ofstream &ofst)
+void WisdomItem::Out(ostream &stream)
 {
 	return;
+}
+int WisdomItem::CountSighns(char* text)
+{
+	char c;
+	int count = 0;
+	for (int i = 0; i < strlen(text); i++)
+	{
+		c = text[i];
+		if (c == ',' || c == '.' || c == '?' || c == '!')
+		{
+			count++;
+		}
+	}
+
+	return count;
+
 }
 void WisdomItem::TEXT(ifstream &ifst)
 {
@@ -59,22 +79,20 @@ void Aforysm::In(ifstream &ifst)
 {
 	ifst.getline(Author, 256);
 }
-void Aforysm::Out(ofstream &ofst)
+void Aforysm::Out(ostream &stream)
 {
-
 	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
 	ofst << "Its content: ";
 	cout << "Following statement is an Aforysm. Its Author is: ";
 	cout << Author << endl;
 	cout << "Its content: ";
-
 }
 void Poslovica::In(ifstream &ifst)
 {
 	ifst.getline(Country, 256);
 }
-void Poslovica::Out(ofstream &ofst)
+void Poslovica::Out(ostream &stream)
 {
 	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
@@ -138,6 +156,53 @@ int List::size()
 	return _size;
 }
 
+
+void List::Sort()
+{
+	node *s, *ptr;
+	int a, b;
+	WisdomItem *temp;
+	if (_tail == nullptr)
+	{
+		return;
+	}
+	s = _tail->_next;
+	while (s != _tail)
+	{
+		ptr = s->_next;
+		while (ptr != _tail->_next)
+		{
+			if (ptr != _tail->_next)
+			{
+
+				if (!s->_item->Compare(*ptr->_item))
+				{
+					temp = s->_item;
+					s->_item = ptr->_item;
+					ptr->_item = temp;
+				}
+			}
+			else
+			{
+				break;
+			}
+			ptr = ptr->_next;
+		}
+		s = s->_next;
+	}
+}
+
+
+void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
+{
+	wisd.Out(ofst);
+	wisd.Out(cout);
+	ofst << wisd.getText() << endl;
+	cout << wisd.getText() << endl;
+	ofst << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
+	cout << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
+}
+
 void List::In(ifstream &ifst)
 {
 	if (ifst.fail())
@@ -156,14 +221,6 @@ void List::In(ifstream &ifst)
 	}
 
 	ifst.close();
-}
-void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
-{
-	wisd.Out(ofst);
-	ofst << wisd.getText() << endl;
-	cout << wisd.getText() << endl;
-	ofst << "The grade of the following statement is: " << wisd.getGrade() << endl;
-	cout << "The grade of the following statement is: " << wisd.getGrade() << endl;
 }
 
 
@@ -193,6 +250,7 @@ void List::Out(ofstream &ofst)
 			this->nextNode();
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
+
 		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
 		ofst << result;
