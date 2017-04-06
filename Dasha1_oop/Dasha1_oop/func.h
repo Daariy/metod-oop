@@ -9,9 +9,10 @@ public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
 	virtual void Out(ofstream &ofst) = 0;
-	void Writeinfo(WisdomItem &wisd, ofstream &ofst);
+	void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
 	char* getText();
+	int CountSighns(char* Text);
 private:
 	char _text[256];
 protected:
@@ -26,7 +27,6 @@ public:
 	~Aforysm() {};
 	void  In(ifstream &ifst);
 	void Out(ofstream &ofst);
-
 private:
 	char Author[256];
 };

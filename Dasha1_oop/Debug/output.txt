@@ -1,0 +1,15 @@
+Container is filled:
+Following statement is an Aforysm. Its Author is: AforysmAuthor1
+Its content: Aforysm1!!!
+Quantity of special symbols in the folowing content: 3
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry2
+Its content: Poslovica1..
+Quantity of special symbols in the folowing content: 2
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry2
+Its content: Poslovica2!.!
+Quantity of special symbols in the folowing content: 3
+----------------------------- 
+There are 3 objects.
+Container is empty:
+----------------------------- 
+There are 0 objects.

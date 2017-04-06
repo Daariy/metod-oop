@@ -9,24 +9,23 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	setlocale(LC_ALL, "Rus");
 	if (argc != 3)
 	{
-		cout << "Ошибка: входной и/или выходной файл отсутствует!" << endl;
+		cout << "Error: Input and/or output filenames are missing" << endl;
 		return 0;
 	}
 	else
 	{
 		List l;
-		ifstream inputFile(argv[1]);
+		ifstream inputFile(argv[1], ios::in | ios::_Nocreate);
 		l.In(inputFile);
-		ofstream outputFile(argv[2]);
+		ofstream outputFile(argv[2], ios::out | ios::trunc);
 		l.Out(outputFile);
 		l.Clear();
+		outputFile.open(argv[2], ios::out | ios::app);
 		l.Out(outputFile);
 	}
 	system("pause");
 	return 0;
+
 }
-
-
