@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "fstream"
 #include "func.h"
+
 using namespace std;
 
 int main(int argc, char* argv[])

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "func.h"
+#include <cstring>
+
 using namespace std;
 
 WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
@@ -20,8 +22,14 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	}
 	case 2:
 	{
-
 		newItem = new Poslovica;
+		newItem->TEXT(ifst);
+		break;
+	}
+	case 3:
+	{
+
+		newItem = new Riddle;
 		newItem->TEXT(ifst);
 		break;
 	}
@@ -99,6 +107,20 @@ void Poslovica::Out(ostream &stream)
 	ofst << "Its content: ";
 	cout << "Folowing statement is Poslovica. Its Country is: ";
 	cout << Country << endl;
+	cout << "Its content: ";
+}
+void Riddle::In(ifstream &ifst)
+{
+	ifst.getline(Answer, 256);
+}
+void Riddle::Out(ofstream &ofst)
+{
+
+	ofst << "Following statement is an Riddle. Its Answer is: ";
+	ofst << Answer << endl;
+	ofst << "Its content: ";
+	cout << "Following statement is an Riddle. Its Answer is: ";
+	cout << Answer << endl;
 	cout << "Its content: ";
 }
 
@@ -223,7 +245,6 @@ void List::In(ifstream &ifst)
 	ifst.close();
 }
 
-
 void List::Out(ofstream &ofst)
 {
 
@@ -248,6 +269,7 @@ void List::Out(ofstream &ofst)
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
+			this->getCurrentItem()->Out(ofst);
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
 
