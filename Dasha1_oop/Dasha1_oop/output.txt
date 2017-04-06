@@ -1,0 +1,16 @@
+Container is filled:
+Following statement is an Aforysm. Its Author is: asdfas
+Its content: Aforysm1
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry1
+Its content: Belyzev
+Following statement is an Riddle. Its Answer is: RiddleAnswer1
+Its content: Riddle1
+Following statement is an Aforysm. Its Author is: AforysmAuthor2
+Its content: Aforysm2
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry2
+Its content: Poslovica2
+----------------------------- 
+There are 5 objects.
+Container is empty:
+----------------------------- 
+There are 0 objects.

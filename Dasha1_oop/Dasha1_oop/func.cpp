@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "func.h"
+#include <cstring>
+
 using namespace std;
 
 WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
@@ -20,8 +22,14 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	}
 	case 2:
 	{
-
 		newItem = new Poslovica;
+		newItem->TEXT(ifst);
+		break;
+	}
+	case 3:
+	{
+
+		newItem = new Riddle;
 		newItem->TEXT(ifst);
 		break;
 	}
@@ -30,8 +38,6 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 		return nullptr;
 	}
 	}
-
-
 	newItem->In(ifst);
 	return newItem;
 
@@ -56,12 +62,12 @@ void Aforysm::In(ifstream &ifst)
 void Aforysm::Out(ofstream &ofst)
 {
 
-	ofst << "Это Афоризм. Его автор: ";
+	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
-	ofst << "Афоризм: ";
-	cout << "Это Афоризм. Его автор ";
+	ofst << "Its content: ";
+	cout << "Following statement is an Aforysm. Its Author is: ";
 	cout << Author << endl;
-	cout << "Афоризм: ";
+	cout << "Its content: ";
 }
 void Poslovica::In(ifstream &ifst)
 {
@@ -69,20 +75,28 @@ void Poslovica::In(ifstream &ifst)
 }
 void Poslovica::Out(ofstream &ofst)
 {
-	ofst << "Это пословица. Страна: ";
+	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
-	ofst << "Пословица: ";
-	cout << "Это пословица. Страна: ";
+	ofst << "Its content: ";
+	cout << "Folowing statement is Poslovica. Its Country is: ";
 	cout << Country << endl;
-	cout << "Пословица: ";
+	cout << "Its content: ";
 }
-void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
+void Riddle::In(ifstream &ifst)
 {
-	wisd.Out(ofst);
-	ofst << wisd.getText() << endl;
-	cout << wisd.getText() << endl;
-
+	ifst.getline(Answer, 256);
 }
+void Riddle::Out(ofstream &ofst)
+{
+
+	ofst << "Following statement is an Riddle. Its Answer is: ";
+	ofst << Answer << endl;
+	ofst << "Its content: ";
+	cout << "Following statement is an Riddle. Its Answer is: ";
+	cout << Answer << endl;
+	cout << "Its content: ";
+}
+
 List::~List()
 {
 	this->Clear();
@@ -101,6 +115,7 @@ void List::Clear()
 	_current = nullptr;
 
 }
+
 void List::Add(WisdomItem* item)
 {
 	++_size;
@@ -120,6 +135,13 @@ void List::Add(WisdomItem* item)
 	}
 
 }
+
+WisdomItem* List::getCurrentItem()
+{
+
+	return _current->_item;
+}
+
 void List::nextNode()
 {
 	_current = _current->_next;
@@ -128,18 +150,19 @@ int List::size()
 {
 	return _size;
 }
+
 void List::In(ifstream &ifst)
 {
 	if (ifst.fail())
 	{
-		cout << "Ошибка: не удается открыть входной файл!" << endl;
+		cerr << "Error: Unable to open input file" << endl;
 		return;
 	}
 	else
 	{
 		while (!ifst.eof())
 		{
-			//сделать статический метод
+
 			WisdomItem* newItem;
 			this->Add(newItem->createAncestor(ifst));
 		}
@@ -147,35 +170,38 @@ void List::In(ifstream &ifst)
 
 	ifst.close();
 }
+
 void List::Out(ofstream &ofst)
 {
 
 	if (ofst.fail())
 	{
-		cout << "Ошибка: не удалось открыть выходной файл!" << endl;
+		cerr << "Error: Unable to open output file" << endl;
 		return;
 	}
 	else
 	{
 		if (_size)
 		{
-			ofst << "Контейнер заполнен:\n";
-			cout << "Контейнер заполнен:\n";
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
 		}
 		else
 		{
-			ofst << "Контейнер пуст\n";
-			cout << "Контейнер пуст\n";
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
 		}
 
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
-			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
+			this->getCurrentItem()->Out(ofst);
+			ofst << this->getCurrentItem()->getText() << endl;
+			cout << this->getCurrentItem()->getText() << endl;
 
 
 		}
-		string result = "----------------------------- \nИмеется " + to_string(_size) + " объекта(ов).\n";
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
 		ofst << result;
 

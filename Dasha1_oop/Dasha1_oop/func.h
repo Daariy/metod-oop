@@ -9,7 +9,6 @@ public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
 	virtual void Out(ofstream &ofst) = 0;
-	void Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
 	char* getText();
 private:
@@ -40,6 +39,18 @@ public:
 	void Out(ofstream &ofst);
 private:
 	char Country[256];
+};
+
+class Riddle : public WisdomItem
+{
+public:
+	Riddle() {};
+	~Riddle() {};
+	void  In(ifstream &ifst);
+	void Out(ofstream &ofst);
+
+private:
+	char Answer[256];
 };
 
 class List
