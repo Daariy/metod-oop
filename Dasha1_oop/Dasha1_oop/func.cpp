@@ -30,14 +30,12 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 		return nullptr;
 	}
 	}
-
-
 	newItem->In(ifst);
 	return newItem;
 
 }
 
-void WisdomItem::Out(ofstream &ofst)
+void WisdomItem::Out(ostream &stream)
 {
 	return;
 }
@@ -53,34 +51,23 @@ void Aforysm::In(ifstream &ifst)
 {
 	ifst.getline(Author, 256);
 }
-void Aforysm::Out(ofstream &ofst)
+void Aforysm::Out(ostream &stream)
 {
 
-	ofst << "Это Афоризм. Его автор: ";
-	ofst << Author << endl;
-	ofst << "Афоризм: ";
-	cout << "Это Афоризм. Его автор ";
-	cout << Author << endl;
-	cout << "Афоризм: ";
+	stream << "Following statement is an Aforysm. Its Author is: ";
+	stream << Author << endl;
+	stream << "Its content: ";
+
 }
 void Poslovica::In(ifstream &ifst)
 {
 	ifst.getline(Country, 256);
 }
-void Poslovica::Out(ofstream &ofst)
+void Poslovica::Out(ostream &stream)
 {
-	ofst << "Это пословица. Страна: ";
-	ofst << Country << endl;
-	ofst << "Пословица: ";
-	cout << "Это пословица. Страна: ";
-	cout << Country << endl;
-	cout << "Пословица: ";
-}
-void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
-{
-	wisd.Out(ofst);
-	ofst << wisd.getText() << endl;
-	cout << wisd.getText() << endl;
+	stream << "Folowing statement is Poslovica. Its Country is: ";
+	stream << Country << endl;
+	stream << "Its content: ";
 
 }
 List::~List()
@@ -120,6 +107,11 @@ void List::Add(WisdomItem* item)
 	}
 
 }
+WisdomItem* List::getCurrentItem()
+{
+
+	return _current->_item;
+}
 void List::nextNode()
 {
 	_current = _current->_next;
@@ -132,14 +124,14 @@ void List::In(ifstream &ifst)
 {
 	if (ifst.fail())
 	{
-		cout << "Ошибка: не удается открыть входной файл!" << endl;
+		cerr << "Error: Unable to open input file" << endl;
 		return;
 	}
 	else
 	{
 		while (!ifst.eof())
 		{
-			//сделать статический метод
+
 			WisdomItem* newItem;
 			this->Add(newItem->createAncestor(ifst));
 		}
@@ -147,35 +139,130 @@ void List::In(ifstream &ifst)
 
 	ifst.close();
 }
+
+void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
+{
+	wisd.Out(ofst);
+	wisd.Out(cout);
+	ofst << wisd.getText() << endl;
+	cout << wisd.getText() << endl;
+
+}
 void List::Out(ofstream &ofst)
 {
 
 	if (ofst.fail())
 	{
-		cout << "Ошибка: не удалось открыть выходной файл!" << endl;
+		cerr << "Error: Unable to open output file" << endl;
 		return;
 	}
 	else
 	{
 		if (_size)
 		{
-			ofst << "Контейнер заполнен:\n";
-			cout << "Контейнер заполнен:\n";
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
 		}
 		else
 		{
-			ofst << "Контейнер пуст\n";
-			cout << "Контейнер пуст\n";
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
 		}
 
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
+		}
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+		cout << result;
+		ofst << result;
 
+		ofst.close();
+	}
+}
+void WisdomItem::OutOnlyAforysm(ofstream &ofst)
+{
+	ofst << endl;
+}
+void WisdomItem::OutOnlyPoslovica(ofstream &ofst)
+{
+	ofst << endl;
+}
+void Aforysm::OutOnlyAforysm(ofstream &ofst)
+{
+	Out(ofst);
+	Out(cout);
+	ofst << this->getText() << endl;
+	cout << this->getText() << endl;
+}
+void List::OutOnlyAforysm(ofstream &ofst)
+{
+	if (ofst.fail())
+	{
+		cerr << "Error: Unable to open output file" << endl;
+		return;
+	}
+	else
+	{
+		if (_size)
+		{
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
+		}
+		else
+		{
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
+		}
+
+		for (int i = 0; i < this->size(); i++)
+		{
+			this->nextNode();
+			this->getCurrentItem()->OutOnlyAforysm(ofst);
 
 		}
-		string result = "----------------------------- \nИмеется " + to_string(_size) + " объекта(ов).\n";
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+		cout << result;
+		ofst << result;
+
+		ofst.close();
+	}
+}
+void Poslovica::OutOnlyPoslovica(ofstream &ofst)
+{
+	Out(ofst);
+	Out(cout);
+	ofst << this->getText() << endl;
+	cout << this->getText() << endl;
+}
+void List::OutOnlyPoslovica(ofstream &ofst)
+{
+	if (ofst.fail())
+	{
+		cerr << "Error: Unable to open output file" << endl;
+		return;
+	}
+	else
+	{
+		if (_size)
+		{
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
+		}
+		else
+		{
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
+		}
+
+		for (int i = 0; i < this->size(); i++)
+		{
+			this->nextNode();
+			this->getCurrentItem()->OutOnlyPoslovica(ofst);
+
+		}
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
 		ofst << result;
 

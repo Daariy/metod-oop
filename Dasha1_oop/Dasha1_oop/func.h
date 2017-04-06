@@ -8,10 +8,13 @@ class WisdomItem
 public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
-	virtual void Out(ofstream &ofst) = 0;
+	virtual void Out(ostream &stream) = 0;
+	virtual void OutOnlyAforysm(ofstream &ofst);
+	virtual void OutOnlyPoslovica(ofstream &ofst);
 	void Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
 	char* getText();
+
 private:
 	char _text[256];
 protected:
@@ -25,7 +28,8 @@ public:
 	Aforysm() {};
 	~Aforysm() {};
 	void  In(ifstream &ifst);
-	void Out(ofstream &ofst);
+	void Out(ostream &stream);
+	void OutOnlyAforysm(ofstream &ofst);
 
 private:
 	char Author[256];
@@ -37,7 +41,8 @@ public:
 	Poslovica() {};
 	~Poslovica() {};
 	void In(ifstream &ifst);
-	void Out(ofstream &ofst);
+	void Out(ostream &stream);
+	void OutOnlyPoslovica(ofstream &ofst);
 private:
 	char Country[256];
 };
@@ -54,6 +59,8 @@ public:
 	int size();
 	void In(ifstream &ifst);
 	void Out(ofstream &ofst);
+	void OutOnlyAforysm(ofstream &ofst);
+	void OutOnlyPoslovica(ofstream &ofst);
 private:
 	struct node
 	{
