@@ -1,7 +1,31 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 ﻿  stdafx.cpp
   func.cpp
-c:\users\евгений\documents\методы программирования\даша\1\dasha1_oop\dasha1_oop\func.cpp(143): warning C4101: newItem: неиспользованная локальная переменная
+c:\users\евгений\documents\методы программирования\даша\2\new class\dasha1_oop\dasha1_oop\func.cpp(166): warning C4101: newItem: неиспользованная локальная переменная
   Dasha1_oop.cpp
   Создание кода...
-  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\1\Dasha1_oop\Debug\Dasha1_oop.exe
-  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\1\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Class\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Class\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+=======
+>>>>>>> origin/NewField
+﻿  func.cpp
+c:\users\евгений\documents\методы программирования\даша\2\new field\dasha1_oop\dasha1_oop\func.cpp(153): warning C4101: newItem: неиспользованная локальная переменная
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+<<<<<<< HEAD
+=======
+﻿  Dasha1_oop.cpp
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Sort\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Sort\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+>>>>>>> refs/remotes/origin/NewFunc
+=======
+>>>>>>> refs/remotes/origin/NewField
+>>>>>>> origin/NewField
+=======
+﻿  Dasha1_oop.cpp
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\Filtred Output\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\Filtred Output\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+>>>>>>> refs/remotes/origin/FiltredOutput

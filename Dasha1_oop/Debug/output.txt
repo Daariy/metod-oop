@@ -1,0 +1,11 @@
+Container is filled:
+
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry1
+Its content: Poslovica1
+
+
+----------------------------- 
+There are 4 objects.
+Container is empty:
+----------------------------- 
+There are 0 objects.

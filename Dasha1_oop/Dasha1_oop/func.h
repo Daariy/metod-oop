@@ -8,12 +8,22 @@ class WisdomItem
 public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
-	virtual void Out(ofstream &ofst) = 0;
+	virtual void Out(ofstream &ofst) = 0;	
+	virtual void Out(ostream &stream) = 0;
+	virtual void OutOnlyAforysm(ofstream &ofst);
+	virtual void OutOnlyPoslovica(ofstream &ofst);
+	virtual void OutOnlyRiddle(ofstream &ofst);
 	void Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
+	bool Compare(WisdomItem &item2);
 	char* getText();
+	int getGrade();
+	void setGrade(ifstream &ifst);
+	int CountSighns(char* Text);
+
 private:
 	char _text[256];
+	int _grade;
 protected:
 	WisdomItem() {};
 	virtual ~WisdomItem() {};
@@ -25,8 +35,8 @@ public:
 	Aforysm() {};
 	~Aforysm() {};
 	void  In(ifstream &ifst);
-	void Out(ofstream &ofst);
-
+	void Out(ostream &stream);
+	void OutOnlyAforysm(ofstream &ofst);
 private:
 	char Author[256];
 };
@@ -37,9 +47,22 @@ public:
 	Poslovica() {};
 	~Poslovica() {};
 	void In(ifstream &ifst);
-	void Out(ofstream &ofst);
+	void Out(ostream &stream);
+	void OutOnlyPoslovica(ofstream &ofst);
 private:
 	char Country[256];
+};
+
+class Riddle : public WisdomItem
+{
+public:
+	Riddle() {};
+	~Riddle() {};
+	void  In(ifstream &ifst);
+	void Out(ofstream &ofst);
+	void OutOnlyRiddle(ofstream &ofst);
+private:
+	char Answer[256];
 };
 
 class List
@@ -54,6 +77,10 @@ public:
 	int size();
 	void In(ifstream &ifst);
 	void Out(ofstream &ofst);
+	void Sort();
+	void OutOnlyAforysm(ofstream &ofst);
+	void OutOnlyPoslovica(ofstream &ofst);
+	void OutOnlyRiddle(ofstream &ofst);
 private:
 	struct node
 	{
