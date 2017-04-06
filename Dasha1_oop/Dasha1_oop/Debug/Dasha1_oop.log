@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  func.cpp
+c:\users\евгений\documents\методы программирования\даша\1\dasha1_oop\dasha1_oop\func.cpp(143): warning C4101: newItem: неиспользованная локальная переменная
+  Dasha1_oop.cpp
+  Создание кода...
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\1\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\1\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
