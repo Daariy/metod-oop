@@ -1,6 +1,7 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\|
 =======
 Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Sort\Dasha1_oop\|
@@ -11,3 +12,6 @@ Debug|Win32|C:\Users\Евгений\Documents\Методы программир�
 Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\|
 >>>>>>> refs/remotes/origin/NewField
 >>>>>>> origin/NewField
+=======
+Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\Filtred Output\Dasha1_oop\|
+>>>>>>> refs/remotes/origin/FiltredOutput

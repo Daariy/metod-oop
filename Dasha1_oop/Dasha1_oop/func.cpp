@@ -115,7 +115,6 @@ void Riddle::In(ifstream &ifst)
 }
 void Riddle::Out(ofstream &ofst)
 {
-
 	ofst << "Following statement is an Riddle. Its Answer is: ";
 	ofst << Answer << endl;
 	ofst << "Its content: ";
@@ -162,7 +161,6 @@ void List::Add(WisdomItem* item)
 	}
 
 }
-
 WisdomItem* List::getCurrentItem()
 {
 
@@ -272,7 +270,139 @@ void List::Out(ofstream &ofst)
 			this->getCurrentItem()->Out(ofst);
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+		cout << result;
+		ofst << result;
 
+		ofst.close();
+	}
+}
+void WisdomItem::OutOnlyAforysm(ofstream &ofst)
+{
+	ofst << endl;
+}
+void WisdomItem::OutOnlyPoslovica(ofstream &ofst)
+{
+	ofst << endl;
+}
+void WisdomItem::OutOnlyRiddle(ofstream &ofst)
+{
+	ofst << endl;
+}
+void Aforysm::OutOnlyAforysm(ofstream &ofst)
+{
+	Out(ofst);
+	Out(cout);
+	ofst << this->getText() << endl;
+	cout << this->getText() << endl;
+}
+void List::OutOnlyAforysm(ofstream &ofst)
+{
+	if (ofst.fail())
+	{
+		cerr << "Error: Unable to open output file" << endl;
+		return;
+	}
+	else
+	{
+		if (_size)
+		{
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
+		}
+		else
+		{
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
+		}
+
+		for (int i = 0; i < this->size(); i++)
+		{
+			this->nextNode();
+			this->getCurrentItem()->OutOnlyAforysm(ofst);
+
+		}
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+		cout << result;
+		ofst << result;
+
+		ofst.close();
+	}
+}
+void Poslovica::OutOnlyPoslovica(ofstream &ofst)
+{
+	Out(ofst);
+	Out(cout);
+	ofst << this->getText() << endl;
+	cout << this->getText() << endl;
+}
+void List::OutOnlyPoslovica(ofstream &ofst)
+{
+	if (ofst.fail())
+	{
+		cerr << "Error: Unable to open output file" << endl;
+		return;
+	}
+	else
+	{
+		if (_size)
+		{
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
+		}
+		else
+		{
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
+		}
+
+		for (int i = 0; i < this->size(); i++)
+		{
+			this->nextNode();
+			this->getCurrentItem()->OutOnlyPoslovica(ofst);
+
+		}
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+		cout << result;
+		ofst << result;
+
+		ofst.close();
+	}
+}
+
+void Riddle::OutOnlyRiddle(ofstream &ofst)
+{
+	Out(ofst);
+	Out(cout);
+	ofst << this->getText() << endl;
+	cout << this->getText() << endl;
+}
+void List::OutOnlyRiddle(ofstream &ofst)
+{
+	if (ofst.fail())
+	{
+		cerr << "Error: Unable to open output file" << endl;
+		return;
+	}
+	else
+	{
+		if (_size)
+		{
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
+		}
+		else
+		{
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
+		}
+
+		for (int i = 0; i < this->size(); i++)
+		{
+			this->nextNode();
+			this->getCurrentItem()->OutOnlyRiddle(ofst);
+
+		}
 		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
 		ofst << result;

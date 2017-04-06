@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ﻿  stdafx.cpp
   func.cpp
@@ -23,3 +24,8 @@ c:\users\евгений\documents\методы программирования\
 =======
 >>>>>>> refs/remotes/origin/NewField
 >>>>>>> origin/NewField
+=======
+﻿  Dasha1_oop.cpp
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\Filtred Output\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\Filtred Output\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+>>>>>>> refs/remotes/origin/FiltredOutput
