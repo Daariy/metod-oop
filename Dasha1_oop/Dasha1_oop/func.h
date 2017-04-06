@@ -45,6 +45,18 @@ private:
 	char Country[256];
 };
 
+class Riddle : public WisdomItem
+{
+public:
+	Riddle() {};
+	~Riddle() {};
+	void  In(ifstream &ifst);
+	void Out(ofstream &ofst);
+
+private:
+	char Answer[256];
+};
+
 class List
 {
 public:

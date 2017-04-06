@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
+Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Class\Dasha1_oop\|
+=======
 Debug|Win32|C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\|
+>>>>>>> refs/remotes/origin/NewField
