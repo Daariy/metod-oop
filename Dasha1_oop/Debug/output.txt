@@ -1,0 +1,12 @@
+Container is filled:
+Following statement is an Aforysm. Its Author is: AforysmAuthor1
+Its content: Aforysm1
+The grade of the following statement is: 5
+Folowing statement is Poslovica. Its Country is: PoslovicaCountry1
+Its content: Poslovica1
+The grade of the following statement is: 6
+----------------------------- 
+There are 2 objects.
+Container is empty:
+----------------------------- 
+There are 0 objects.

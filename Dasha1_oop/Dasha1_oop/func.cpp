@@ -30,11 +30,9 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 		return nullptr;
 	}
 	}
-
-
 	newItem->In(ifst);
+	newItem->setGrade(ifst);
 	return newItem;
-
 }
 
 void WisdomItem::Out(ofstream &ofst)
@@ -49,6 +47,14 @@ char* WisdomItem::getText()
 {
 	return _text;
 }
+void WisdomItem::setGrade(ifstream &ifst)
+{
+	ifst >> _grade;
+}
+int WisdomItem::getGrade()
+{
+	return _grade;
+}
 void Aforysm::In(ifstream &ifst)
 {
 	ifst.getline(Author, 256);
@@ -56,12 +62,13 @@ void Aforysm::In(ifstream &ifst)
 void Aforysm::Out(ofstream &ofst)
 {
 
-	ofst << "Это Афоризм. Его автор: ";
+	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
-	ofst << "Афоризм: ";
-	cout << "Это Афоризм. Его автор ";
+	ofst << "Its content: ";
+	cout << "Following statement is an Aforysm. Its Author is: ";
 	cout << Author << endl;
-	cout << "Афоризм: ";
+	cout << "Its content: ";
+
 }
 void Poslovica::In(ifstream &ifst)
 {
@@ -69,20 +76,14 @@ void Poslovica::In(ifstream &ifst)
 }
 void Poslovica::Out(ofstream &ofst)
 {
-	ofst << "Это пословица. Страна: ";
+	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
-	ofst << "Пословица: ";
-	cout << "Это пословица. Страна: ";
+	ofst << "Its content: ";
+	cout << "Folowing statement is Poslovica. Its Country is: ";
 	cout << Country << endl;
-	cout << "Пословица: ";
+	cout << "Its content: ";
 }
-void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
-{
-	wisd.Out(ofst);
-	ofst << wisd.getText() << endl;
-	cout << wisd.getText() << endl;
 
-}
 List::~List()
 {
 	this->Clear();
@@ -101,6 +102,7 @@ void List::Clear()
 	_current = nullptr;
 
 }
+
 void List::Add(WisdomItem* item)
 {
 	++_size;
@@ -120,6 +122,13 @@ void List::Add(WisdomItem* item)
 	}
 
 }
+
+WisdomItem* List::getCurrentItem()
+{
+
+	return _current->_item;
+}
+
 void List::nextNode()
 {
 	_current = _current->_next;
@@ -128,18 +137,19 @@ int List::size()
 {
 	return _size;
 }
+
 void List::In(ifstream &ifst)
 {
 	if (ifst.fail())
 	{
-		cout << "Ошибка: не удается открыть входной файл!" << endl;
+		cerr << "Error: Unable to open input file" << endl;
 		return;
 	}
 	else
 	{
 		while (!ifst.eof())
 		{
-			//сделать статический метод
+
 			WisdomItem* newItem;
 			this->Add(newItem->createAncestor(ifst));
 		}
@@ -147,35 +157,43 @@ void List::In(ifstream &ifst)
 
 	ifst.close();
 }
+void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
+{
+	wisd.Out(ofst);
+	ofst << wisd.getText() << endl;
+	cout << wisd.getText() << endl;
+	ofst << "The grade of the following statement is: " << wisd.getGrade() << endl;
+	cout << "The grade of the following statement is: " << wisd.getGrade() << endl;
+}
+
+
 void List::Out(ofstream &ofst)
 {
 
 	if (ofst.fail())
 	{
-		cout << "Ошибка: не удалось открыть выходной файл!" << endl;
+		cerr << "Error: Unable to open output file" << endl;
 		return;
 	}
 	else
 	{
 		if (_size)
 		{
-			ofst << "Контейнер заполнен:\n";
-			cout << "Контейнер заполнен:\n";
+			ofst << "Container is filled:\n";
+			cout << "Container is filled:\n";
 		}
 		else
 		{
-			ofst << "Контейнер пуст\n";
-			cout << "Контейнер пуст\n";
+			ofst << "Container is empty:\n";
+			cout << "Container is empty:\n";
 		}
 
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
-
-
 		}
-		string result = "----------------------------- \nИмеется " + to_string(_size) + " объекта(ов).\n";
+		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
 		ofst << result;
 
