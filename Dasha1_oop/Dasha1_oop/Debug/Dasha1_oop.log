@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  stdafx.cpp
   func.cpp
 c:\users\евгений\documents\методы программирования\даша\2\new class\dasha1_oop\dasha1_oop\func.cpp(166): warning C4101: newItem: неиспользованная локальная переменная
@@ -5,3 +6,9 @@ c:\users\евгений\documents\методы программирования\
   Создание кода...
   Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Class\Dasha1_oop\Debug\Dasha1_oop.exe
   Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Class\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+=======
+﻿  func.cpp
+c:\users\евгений\documents\методы программирования\даша\2\new field\dasha1_oop\dasha1_oop\func.cpp(153): warning C4101: newItem: неиспользованная локальная переменная
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\2\New Field\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+>>>>>>> refs/remotes/origin/NewField

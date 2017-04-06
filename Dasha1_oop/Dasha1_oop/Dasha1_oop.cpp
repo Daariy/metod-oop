@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 {
 	if (argc != 3)
 	{
-		cout << "Error: Input and/or output filenames are missing" << endl;
+		cerr << "Error: Input and/or output filenames are missing" << endl;
 		return 0;
 	}
 	else

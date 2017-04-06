@@ -9,10 +9,14 @@ public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
 	virtual void Out(ofstream &ofst) = 0;
+	void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst);
 	void TEXT(ifstream &ifst);
 	char* getText();
+	int getGrade();
+	void setGrade(ifstream &ifst);
 private:
 	char _text[256];
+	int _grade;
 protected:
 	WisdomItem() {};
 	virtual ~WisdomItem() {};

@@ -39,8 +39,8 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	}
 	}
 	newItem->In(ifst);
+	newItem->setGrade(ifst);
 	return newItem;
-
 }
 
 void WisdomItem::Out(ofstream &ofst)
@@ -54,6 +54,14 @@ void WisdomItem::TEXT(ifstream &ifst)
 char* WisdomItem::getText()
 {
 	return _text;
+}
+void WisdomItem::setGrade(ifstream &ifst)
+{
+	ifst >> _grade;
+}
+int WisdomItem::getGrade()
+{
+	return _grade;
 }
 void Aforysm::In(ifstream &ifst)
 {
@@ -171,6 +179,15 @@ void List::In(ifstream &ifst)
 	ifst.close();
 }
 
+void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
+{
+	wisd.Out(ofst);
+	ofst << wisd.getText() << endl;
+	cout << wisd.getText() << endl;
+	ofst << "The grade of the following statement is: " << wisd.getGrade() << endl;
+	cout << "The grade of the following statement is: " << wisd.getGrade() << endl;
+}
+
 void List::Out(ofstream &ofst)
 {
 
@@ -196,10 +213,7 @@ void List::Out(ofstream &ofst)
 		{
 			this->nextNode();
 			this->getCurrentItem()->Out(ofst);
-			ofst << this->getCurrentItem()->getText() << endl;
-			cout << this->getCurrentItem()->getText() << endl;
-
-
+			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
 		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
 		cout << result;
