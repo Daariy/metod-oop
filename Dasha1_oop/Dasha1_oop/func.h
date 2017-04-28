@@ -8,8 +8,7 @@ class WisdomItem
 public:
 	static WisdomItem* createAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
-	virtual void Out(ofstream &ofst) = 0;	
-	virtual void Out(ostream &stream) = 0;
+	virtual void Out(ostream &ofst) = 0;	
 	virtual void OutOnlyAforysm(ofstream &ofst);
 	virtual void OutOnlyPoslovica(ofstream &ofst);
 	virtual void OutOnlyRiddle(ofstream &ofst);
@@ -35,7 +34,7 @@ public:
 	Aforysm() {};
 	~Aforysm() {};
 	void  In(ifstream &ifst);
-	void Out(ostream &stream);
+	void Out(ostream &ofst);
 	void OutOnlyAforysm(ofstream &ofst);
 private:
 	char Author[256];
@@ -47,7 +46,7 @@ public:
 	Poslovica() {};
 	~Poslovica() {};
 	void In(ifstream &ifst);
-	void Out(ostream &stream);
+	void Out(ostream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
 private:
 	char Country[256];
@@ -59,7 +58,7 @@ public:
 	Riddle() {};
 	~Riddle() {};
 	void  In(ifstream &ifst);
-	void Out(ofstream &ofst);
+	void Out(ostream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);
 private:
 	char Answer[256];
@@ -77,7 +76,7 @@ public:
 	int size();
 	void In(ifstream &ifst);
 	void Out(ofstream &ofst);
-	void Sort();
+	void Sort(int des);
 	void OutOnlyAforysm(ofstream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);

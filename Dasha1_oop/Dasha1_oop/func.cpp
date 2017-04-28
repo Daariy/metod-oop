@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "func.h"
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 
@@ -47,7 +48,7 @@ bool WisdomItem::Compare(WisdomItem &item2)
 	return CountSighns(_text) < item2.CountSighns(item2._text);
 }
 
-void WisdomItem::Out(ostream &stream)
+void WisdomItem::Out(ostream &ofst)
 {
 	return;
 }
@@ -87,7 +88,7 @@ void Aforysm::In(ifstream &ifst)
 {
 	ifst.getline(Author, 256);
 }
-void Aforysm::Out(ostream &stream)
+void Aforysm::Out(ostream &ofst)
 {
 	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
@@ -100,7 +101,7 @@ void Poslovica::In(ifstream &ifst)
 {
 	ifst.getline(Country, 256);
 }
-void Poslovica::Out(ostream &stream)
+void Poslovica::Out(ostream &ofst)
 {
 	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
@@ -113,7 +114,7 @@ void Riddle::In(ifstream &ifst)
 {
 	ifst.getline(Answer, 256);
 }
-void Riddle::Out(ofstream &ofst)
+void Riddle::Out(ostream &ofst)
 {
 	ofst << "Following statement is an Riddle. Its Answer is: ";
 	ofst << Answer << endl;
@@ -177,7 +178,7 @@ int List::size()
 }
 
 
-void List::Sort()
+void List::Sort(int des)
 {
 	node *s, *ptr;
 	int a, b;
@@ -194,13 +195,27 @@ void List::Sort()
 		{
 			if (ptr != _tail->_next)
 			{
-
-				if (!s->_item->Compare(*ptr->_item))
+				if (des == 1)
 				{
-					temp = s->_item;
-					s->_item = ptr->_item;
-					ptr->_item = temp;
+
+					if (!s->_item->Compare(*ptr->_item))
+					{
+						temp = s->_item;
+						s->_item = ptr->_item;
+						ptr->_item = temp;
+					}
 				}
+				if (des == 2)
+				{
+					if (s->_item->Compare(*ptr->_item))
+					{
+						temp = s->_item;
+						s->_item = ptr->_item;
+						ptr->_item = temp;
+					}
+				}
+
+
 			}
 			else
 			{
