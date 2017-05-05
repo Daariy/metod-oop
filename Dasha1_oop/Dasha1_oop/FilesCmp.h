@@ -2,14 +2,17 @@
 
 using namespace std;
 
-bool FilesCmp(ifstream &expected, ifstream &actual) {
+bool FilesCmp(ifstream &expected, ifstream &actual) 
+{
 	bool flag = true;
-	char ActTest;
-	char ExpTest;
-	while (!expected.eof()) {
-		expected >> ExpTest;
-		actual >> ActTest;
-		if (ExpTest != ActTest) {
+	char actTest;
+	char expTest;
+	while (!expected.eof()) 
+	{
+		expected >> expTest;
+		actual >> actTest;
+		if (expTest != actTest) 
+		{
 			flag = false;
 			break;
 		}

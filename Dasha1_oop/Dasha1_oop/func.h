@@ -6,21 +6,21 @@ using namespace std;
 class WisdomItem
 {
 public:
-	static WisdomItem* createAncestor(ifstream &ifst);
+	static WisdomItem* CreateAncestor(ifstream &ifst);
 	virtual void In(ifstream &ifst) = 0;
 	virtual void Out(ostream &ofst) = 0;	
 	virtual void OutOnlyAforysm(ofstream &ofst);
 	virtual void OutOnlyPoslovica(ofstream &ofst);
 	virtual void OutOnlyRiddle(ofstream &ofst);
 	void Writeinfo(WisdomItem &wisd, ofstream &ofst);
-	void TEXT(ifstream &ifst);
+	void Text(ifstream &ifst);
 	bool Compare(WisdomItem &item2);
-	char* getText();
-	int getGrade();
-	void setGrade(ifstream &ifst);
+	char* GetText();
+	int GetGrade();
+	void SetGrade(ifstream &ifst);
 	int CountSighns(char* Text);
-	char _text[256];
-	int _grade;
+	char text[256];
+	int grade;
 protected:
 	WisdomItem() {};
 	virtual ~WisdomItem() {};
@@ -34,7 +34,7 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyAforysm(ofstream &ofst);
-	char Author[256];
+	char author[256];
 };
 
 class Poslovica :public WisdomItem
@@ -45,7 +45,7 @@ public:
 	void In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
-	char Country[256];
+	char country[256];
 };
 
 class Riddle : public WisdomItem
@@ -56,19 +56,19 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);
-	char Answer[256];
+	char answer[256];
 };
 
 class List
 {
 public:
-	List() : _head(nullptr), _tail(nullptr), _current(nullptr), _size(0) {};
+	List() : head(nullptr), tail(nullptr), current(nullptr), size(0) {};
 	~List();
 	void Clear();
 	void Add(WisdomItem* item);
-	WisdomItem* getCurrentItem();
-	void nextNode();
-	int size();
+	WisdomItem* GetCurrentItem();
+	void NextNode();
+	int Size();
 	void In(ifstream &ifst);
 	void Out(ofstream &ofst);
 	void Sort(int des);
@@ -78,9 +78,9 @@ public:
 private:
 	struct node
 	{
-		WisdomItem* _item;
-		node* _next;
+		WisdomItem* item;
+		node* next;
 	};
-	node *_head, *_tail, *_current;
-	int _size;
+	node *head, *tail, *current;
+	int size;
 };

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
+WisdomItem* WisdomItem::CreateAncestor(ifstream &ifst)
 {
 	CheckInputFile(ifst);
 	WisdomItem* newItem = nullptr;
@@ -13,7 +13,8 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 
 	ifst >> num;
 	CheckWrongInput(ifst);
-	if (!(1 <= num && num <= 3)) {
+	if (!(1 <= num && num <= 3)) 
+	{
 		cerr << "Error: unknown type" << endl;
 		exit(1);
 	}
@@ -23,37 +24,35 @@ WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 	CheckWrongInput(ifst);
 	switch (num)
 	{
-	case 1:
-	{
-		newItem = new Aforysm;
-		newItem->TEXT(ifst);
-		break;
-	}
-	case 2:
-	{
-		newItem = new Poslovica;
-		newItem->TEXT(ifst);
-		break;
-	}
-	case 3:
-	{
+		case 1:
+		{
+			newItem = new Aforysm;
+			newItem->Text(ifst);
+			break;
+		}
+		case 2:
+		{
+			newItem = new Poslovica;
+			newItem->Text(ifst);
+			break;
+		}
+		case 3:
+		{
 
-		newItem = new Riddle;
-		newItem->TEXT(ifst);
-		break;
-	}
-	default:
-	{
-		return nullptr;
-	}
+			newItem = new Riddle;
+			newItem->Text(ifst);
+			break;
+		}
+		default:
+			return nullptr;
 	}
 	newItem->In(ifst);
-	newItem->setGrade(ifst);
+	newItem->SetGrade(ifst);
 	return newItem;
 }
 bool WisdomItem::Compare(WisdomItem &item2)
 {
-	return CountSighns(_text) < item2.CountSighns(item2._text);
+	return CountSighns(text) < item2.CountSighns(item2.text);
 }
 
 void WisdomItem::Out(ostream &ofst)
@@ -77,60 +76,60 @@ int WisdomItem::CountSighns(char* text)
 	return count;
 
 }
-void WisdomItem::TEXT(ifstream &ifst)
+void WisdomItem::Text(ifstream &ifst)
 {
 	CheckInputFile(ifst);
-		ifst.getline(_text, 256);
+	ifst.getline(text, 256);
 	CheckWrongInput(ifst);
 }
-char* WisdomItem::getText()
+char* WisdomItem::GetText()
 {
-	return _text;
+	return text;
 }
-void WisdomItem::setGrade(ifstream &ifst)
+void WisdomItem::SetGrade(ifstream &ifst)
 {
 	CheckInputFile(ifst);
-	ifst >> _grade;
-	CheckGrade(_grade);
+	ifst >> grade;
+	CheckGrade(grade);
 }
-int WisdomItem::getGrade()
+int WisdomItem::GetGrade()
 {
-	return _grade;
+	return grade;
 }
 void Aforysm::In(ifstream &ifst)
 {
 	CheckInputFile(ifst);
-	ifst.getline(Author, 256);
+	ifst.getline(author, 256);
 }
 void Aforysm::Out(ostream &ofst)
 {
 	CheckOutputFile(ofst);
-	ofst << "Following statement is an Aforysm. Its Author is: ";
-	ofst << Author << endl;
+	ofst << "Following statement is an Aforysm. Its author is: ";
+	ofst << author << endl;
 	ofst << "Its content: ";
 }
 void Poslovica::In(ifstream &ifst)
 {
 	CheckInputFile(ifst);
-	ifst.getline(Country, 256);
+	ifst.getline(country, 256);
 }
 void Poslovica::Out(ostream &ofst)
 {
 	CheckOutputFile(ofst);
-	ofst << "Folowing statement is Poslovica. Its Country is: ";
-	ofst << Country << endl;
+	ofst << "Folowing statement is Poslovica. Its country is: ";
+	ofst << country << endl;
 	ofst << "Its content: ";
 }
 void Riddle::In(ifstream &ifst)
 {
 	CheckInputFile(ifst);
-	ifst.getline(Answer, 256);
+	ifst.getline(answer, 256);
 }
 void Riddle::Out(ostream &ofst)
 {
 	CheckOutputFile(ofst);
-	ofst << "Following statement is an Riddle. Its Answer is: ";
-	ofst << Answer << endl;
+	ofst << "Following statement is an Riddle. Its answer is: ";
+	ofst << answer << endl;
 	ofst << "Its content: ";
 }
 
@@ -140,50 +139,50 @@ List::~List()
 }
 void List::Clear()
 {
-	while (_size != 0)
+	while (size != 0)
 	{
-		node* temp = _head->_next;
-		delete _head;
-		_head = temp;
-		--_size;
+		node* temp = head->next;
+		delete head;
+		head = temp;
+		--size;
 	}
-	_head = nullptr;
-	_tail = nullptr;
-	_current = nullptr;
+	head = nullptr;
+	tail = nullptr;
+	current = nullptr;
 
 }
 
 void List::Add(WisdomItem* item)
 {
-	++_size;
+	++size;
 	node* tmp = new node;
-	tmp->_item = item;
-	tmp->_next = _head;
-	_current = tmp;
+	tmp->item = item;
+	tmp->next = head;
+	current = tmp;
 
-	if (_head != nullptr)
+	if (head != nullptr)
 	{
-		_tail->_next = tmp;
-		_tail = tmp;
+		tail->next = tmp;
+		tail = tmp;
 	}
 	else
 	{
-		_head = _tail = tmp;
+		head = tail = tmp;
 	}
 
 }
-WisdomItem* List::getCurrentItem()
+WisdomItem* List::GetCurrentItem()
 {
-	return _current->_item;
+	return current->item;
 }
 
-void List::nextNode()
+void List::NextNode()
 {
-	_current = _current->_next;
+	current = current->next;
 }
-int List::size()
+int List::Size()
 {
-	return _size;
+	return size;
 }
 
 
@@ -192,36 +191,36 @@ void List::Sort(int des)
 	node *s, *ptr;
 	int a, b;
 	WisdomItem *temp;
-	if (_tail == nullptr)
+	if (tail == nullptr)
 	{
 		return;
 	}
-	s = _tail->_next;
-	while (s != _tail)
+	s = tail->next;
+	while (s != tail)
 	{
-		ptr = s->_next;
-		while (ptr != _tail->_next)
+		ptr = s->next;
+		while (ptr != tail->next)
 		{
-			if (ptr != _tail->_next)
+			if (ptr != tail->next)
 			{
 				switch (des)
 				{
 				case 0:
 				{
-					if (!s->_item->Compare(*ptr->_item))
+					if (!s->item->Compare(*ptr->item))
 					{
-						temp = s->_item;
-						s->_item = ptr->_item;
-						ptr->_item = temp;
+						temp = s->item;
+						s->item = ptr->item;
+						ptr->item = temp;
 					}
 				}
 				case 1:
 				{
-					if (s->_item->Compare(*ptr->_item))
+					if (s->item->Compare(*ptr->item))
 					{
-						temp = s->_item;
-						s->_item = ptr->_item;
-						ptr->_item = temp;
+						temp = s->item;
+						s->item = ptr->item;
+						ptr->item = temp;
 					}
 				}
 				default:
@@ -233,9 +232,9 @@ void List::Sort(int des)
 			{
 				break;
 			}
-			ptr = ptr->_next;
+			ptr = ptr->next;
 		}
-		s = s->_next;
+		s = s->next;
 	}
 }
 
@@ -245,10 +244,10 @@ void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
 	CheckOutputFile(ofst);
 	wisd.Out(ofst);
 	wisd.Out(cout);
-	ofst << wisd.getText() << endl;
-	cout << wisd.getText() << endl;
-	ofst << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
-	cout << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd._text) << endl;
+	ofst << wisd.GetText() << endl;
+	cout << wisd.GetText() << endl;
+	ofst << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd.text) << endl;
+	cout << "Quantity of special symbols in the folowing content: " << wisd.CountSighns(wisd.text) << endl;
 }
 
 void List::In(ifstream &ifst)
@@ -258,7 +257,7 @@ void List::In(ifstream &ifst)
 		{
 
 			WisdomItem* newItem;
-			this->Add(newItem->createAncestor(ifst));
+			this->Add(newItem->CreateAncestor(ifst));
 		}
 
 	ifst.close();
@@ -267,7 +266,7 @@ void List::In(ifstream &ifst)
 void List::Out(ofstream &ofst)
 {
 	CheckOutputFile(ofst);
-	if (_size)
+	if (size)
 	{
 		ofst << "Container is filled:\n";
 		cout << "Container is filled:\n";
@@ -278,13 +277,13 @@ void List::Out(ofstream &ofst)
 		cout << "Container is empty:\n";
 	}
 
-	for (int i = 0; i < this->size(); i++)
+	for (int i = 0; i < this->Size(); i++)
 	{
-		this->nextNode();
-		//this->getCurrentItem()->Out(ofst);
-		this->_current->_item->Writeinfo(*this->_current->_item, ofst);
+		this->NextNode();
+		//this->GetCurrentItem()->Out(ofst);
+		this->current->item->Writeinfo(*this->current->item, ofst);
 	}
-	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	string result = "----------------------------- \nThere are " + to_string(size) + " objects.\n";
 	cout << result;
 	ofst << result;
 
@@ -311,14 +310,14 @@ void Aforysm::OutOnlyAforysm(ofstream &ofst)
 
 	Out(ofst);
 	Out(cout);
-	ofst << this->getText() << endl;
-	cout << this->getText() << endl;
+	ofst << this->GetText() << endl;
+	cout << this->GetText() << endl;
 }
 void List::OutOnlyAforysm(ofstream &ofst)
 {
 	CheckOutputFile(ofst);
 
-	if (_size)
+	if (size)
 	{
 		ofst << "Container is filled:\n";
 		cout << "Container is filled:\n";
@@ -329,13 +328,13 @@ void List::OutOnlyAforysm(ofstream &ofst)
 		cout << "Container is empty:\n";
 	}
 
-	for (int i = 0; i < this->size(); i++)
+	for (int i = 0; i < this->Size(); i++)
 	{
-		this->nextNode();
-		this->getCurrentItem()->OutOnlyAforysm(ofst);
+		this->NextNode();
+		this->GetCurrentItem()->OutOnlyAforysm(ofst);
 
 	}
-	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	string result = "----------------------------- \nThere are " + to_string(size) + " objects.\n";
 	cout << result;
 	ofst << result;
 
@@ -346,14 +345,14 @@ void Poslovica::OutOnlyPoslovica(ofstream &ofst)
 	CheckOutputFile(ofst);
 	Out(ofst);
 	Out(cout);
-	ofst << this->getText() << endl;
-	cout << this->getText() << endl;
+	ofst << this->GetText() << endl;
+	cout << this->GetText() << endl;
 }
 void List::OutOnlyPoslovica(ofstream &ofst)
 {
 	CheckOutputFile(ofst);
 
-	if (_size)
+	if (size)
 	{
 		ofst << "Container is filled:\n";
 		cout << "Container is filled:\n";
@@ -364,13 +363,13 @@ void List::OutOnlyPoslovica(ofstream &ofst)
 		cout << "Container is empty:\n";
 	}
 
-	for (int i = 0; i < this->size(); i++)
+	for (int i = 0; i < this->Size(); i++)
 	{
-		this->nextNode();
-		this->getCurrentItem()->OutOnlyPoslovica(ofst);
+		this->NextNode();
+		this->GetCurrentItem()->OutOnlyPoslovica(ofst);
 
 	}
-	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	string result = "----------------------------- \nThere are " + to_string(size) + " objects.\n";
 	cout << result;
 	ofst << result;
 
@@ -383,14 +382,14 @@ void Riddle::OutOnlyRiddle(ofstream &ofst)
 	CheckOutputFile(ofst);
 	Out(ofst);
 	Out(cout);
-	ofst << this->getText() << endl;
-	cout << this->getText() << endl;
+	ofst << this->GetText() << endl;
+	cout << this->GetText() << endl;
 }
 
 void List::OutOnlyRiddle(ofstream &ofst)
 {
 	CheckOutputFile(ofst);
-	if (_size)
+	if (size)
 	{
 		ofst << "Container is filled:\n";
 		cout << "Container is filled:\n";
@@ -401,13 +400,13 @@ void List::OutOnlyRiddle(ofstream &ofst)
 		cout << "Container is empty:\n";
 	}
 
-	for (int i = 0; i < this->size(); i++)
+	for (int i = 0; i < this->Size(); i++)
 	{
-		this->nextNode();
-		this->getCurrentItem()->OutOnlyRiddle(ofst);
+		this->NextNode();
+		this->GetCurrentItem()->OutOnlyRiddle(ofst);
 
 	}
-	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	string result = "----------------------------- \nThere are " + to_string(size) + " objects.\n";
 	cout << result;
 	ofst << result;
 

@@ -138,26 +138,26 @@ class WisdomItemTest : public ::testing::Test {
 TEST_F(WisdomItemTest, CheckCountSighns)
 {
 	WisdomItem* a = new Aforysm;
-	strcpy_s(a->_text,"...");
+	strcpy_s(a->text,"...");
 	int expected = 3;
-	ASSERT_EQ(expected, a->CountSighns(a->_text));
+	ASSERT_EQ(expected, a->CountSighns(a->text));
 }
 
 TEST_F(WisdomItemTest, CheckCountSighnsZero)
 {
 	WisdomItem* a = new Aforysm;
-	strcpy_s(a->_text, "");
+	strcpy_s(a->text, "");
 	int expected = 0;
-	ASSERT_EQ(expected, a->CountSighns(a->_text));
+	ASSERT_EQ(expected, a->CountSighns(a->text));
 }
 
 TEST_F(WisdomItemTest, CheckCompare)
 {
 	WisdomItem* s1 = new Aforysm;
-	strcpy_s(s1->_text, "..");
+	strcpy_s(s1->text, "..");
 
 	WisdomItem* s2 = new Aforysm;
-	strcpy_s(s2->_text, "...");
+	strcpy_s(s2->text, "...");
 	
 	ASSERT_TRUE(s1->Compare(*s2));
 }
@@ -171,16 +171,16 @@ TEST_F(AforysmTest, CheckInput)
 	Aforysm actual;
 	actual.In(ifst);
 	Aforysm b;
-	strcpy_s(b.Author,"Dasha");
+	strcpy_s(b.author,"Dasha");
 
-	ASSERT_STREQ(actual.Author, b.Author);
+	ASSERT_STREQ(actual.author, b.author);
 }
 
 TEST_F(AforysmTest, CheckOutput)
 {
 	ofstream ofst("OutTest.txt");
 	Aforysm b;
-	strcpy_s(b.Author,"Dasha");
+	strcpy_s(b.author,"Dasha");
 	b.Out(ofst);
 	ofst.close();
 
@@ -200,16 +200,16 @@ TEST_F(PoslovicaTest, CheckInput)
 	Poslovica actual;
 	actual.In(ifst);
 	Poslovica b;
-	strcpy_s(b.Country, "Russia");
+	strcpy_s(b.country, "Russia");
 
-	ASSERT_STREQ(actual.Country, b.Country);
+	ASSERT_STREQ(actual.country, b.country);
 }
 
 TEST_F(PoslovicaTest, CheckOutput)
 {
 	ofstream ofst("OutTest.txt");
 	Poslovica b;
-	strcpy_s(b.Country, "Russia");
+	strcpy_s(b.country, "Russia");
 	b.Out(ofst);
 	ofst.close();
 
@@ -228,16 +228,16 @@ TEST_F(RiddleTest, CheckInput)
 	Riddle actual;
 	actual.In(ifst);
 	Riddle b;
-	strcpy_s(b.Answer, "Dasha");
+	strcpy_s(b.answer, "Dasha");
 
-	ASSERT_STREQ(actual.Answer, b.Answer);
+	ASSERT_STREQ(actual.answer, b.answer);
 }
 
 TEST_F(RiddleTest, CheckOutput)
 {
 	ofstream ofst("OutTest.txt");
 	Riddle b;
-	strcpy_s(b.Answer, "Dasha");
+	strcpy_s(b.answer, "Dasha");
 	b.Out(ofst);
 	ofst.close();
 
