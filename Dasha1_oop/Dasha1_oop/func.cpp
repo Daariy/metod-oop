@@ -1,18 +1,26 @@
 #include "stdafx.h"
 #include "func.h"
 #include <cstring>
-#include <iostream>
+#include "Protect.h"
 
 using namespace std;
 
 WisdomItem* WisdomItem::createAncestor(ifstream &ifst)
 {
+	CheckInputFile(ifst);
 	WisdomItem* newItem = nullptr;
 	int num = 0;
 
 	ifst >> num;
+	CheckWrongInput(ifst);
+	if (!(1 <= num && num <= 3)) {
+		cerr << "Error: unknown type" << endl;
+		exit(1);
+	}
+
 	char t[256];
 	ifst.getline(t, 256);
+	CheckWrongInput(ifst);
 	switch (num)
 	{
 	case 1:
@@ -50,6 +58,7 @@ bool WisdomItem::Compare(WisdomItem &item2)
 
 void WisdomItem::Out(ostream &ofst)
 {
+	CheckOutputFile(ofst);
 	return;
 }
 int WisdomItem::CountSighns(char* text)
@@ -70,7 +79,9 @@ int WisdomItem::CountSighns(char* text)
 }
 void WisdomItem::TEXT(ifstream &ifst)
 {
-	ifst.getline(_text, 256);
+	CheckInputFile(ifst);
+		ifst.getline(_text, 256);
+	CheckWrongInput(ifst);
 }
 char* WisdomItem::getText()
 {
@@ -78,7 +89,9 @@ char* WisdomItem::getText()
 }
 void WisdomItem::setGrade(ifstream &ifst)
 {
+	CheckInputFile(ifst);
 	ifst >> _grade;
+	CheckGrade(_grade);
 }
 int WisdomItem::getGrade()
 {
@@ -86,30 +99,36 @@ int WisdomItem::getGrade()
 }
 void Aforysm::In(ifstream &ifst)
 {
+	CheckInputFile(ifst);
 	ifst.getline(Author, 256);
 }
 void Aforysm::Out(ostream &ofst)
 {
+	CheckOutputFile(ofst);
 	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
 	ofst << "Its content: ";
 }
 void Poslovica::In(ifstream &ifst)
 {
+	CheckInputFile(ifst);
 	ifst.getline(Country, 256);
 }
 void Poslovica::Out(ostream &ofst)
 {
+	CheckOutputFile(ofst);
 	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
 	ofst << "Its content: ";
 }
 void Riddle::In(ifstream &ifst)
 {
+	CheckInputFile(ifst);
 	ifst.getline(Answer, 256);
 }
 void Riddle::Out(ostream &ofst)
 {
+	CheckOutputFile(ofst);
 	ofst << "Following statement is an Riddle. Its Answer is: ";
 	ofst << Answer << endl;
 	ofst << "Its content: ";
@@ -155,7 +174,6 @@ void List::Add(WisdomItem* item)
 }
 WisdomItem* List::getCurrentItem()
 {
-
 	return _current->_item;
 }
 
@@ -186,9 +204,10 @@ void List::Sort(int des)
 		{
 			if (ptr != _tail->_next)
 			{
-				if (des == 0)
+				switch (des)
 				{
-
+				case 0:
+				{
 					if (!s->_item->Compare(*ptr->_item))
 					{
 						temp = s->_item;
@@ -196,7 +215,7 @@ void List::Sort(int des)
 						ptr->_item = temp;
 					}
 				}
-				if (des == 1)
+				case 1:
 				{
 					if (s->_item->Compare(*ptr->_item))
 					{
@@ -205,8 +224,10 @@ void List::Sort(int des)
 						ptr->_item = temp;
 					}
 				}
-
-
+				default:
+					cout << "Wrong des in Sort function" << endl;
+					break;
+				}
 			}
 			else
 			{
@@ -221,6 +242,7 @@ void List::Sort(int des)
 
 void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	wisd.Out(ofst);
 	wisd.Out(cout);
 	ofst << wisd.getText() << endl;
@@ -231,72 +253,62 @@ void WisdomItem::Writeinfo(WisdomItem &wisd, ofstream &ofst)
 
 void List::In(ifstream &ifst)
 {
-	if (ifst.fail())
-	{
-		cerr << "Error: Unable to open input file" << endl;
-		return;
-	}
-	else
-	{
-		while (!ifst.eof())
+	CheckInputFile(ifst);
+	while (!ifst.eof())
 		{
 
 			WisdomItem* newItem;
 			this->Add(newItem->createAncestor(ifst));
 		}
-	}
 
 	ifst.close();
 }
 
 void List::Out(ofstream &ofst)
 {
-
-	if (ofst.fail())
+	CheckOutputFile(ofst);
+	if (_size)
 	{
-		cerr << "Error: Unable to open output file" << endl;
-		return;
+		ofst << "Container is filled:\n";
+		cout << "Container is filled:\n";
 	}
 	else
 	{
-		if (_size)
-		{
-			ofst << "Container is filled:\n";
-			cout << "Container is filled:\n";
-		}
-		else
-		{
-			ofst << "Container is empty:\n";
-			cout << "Container is empty:\n";
-		}
-
-		for (int i = 0; i < this->size(); i++)
-		{
-			this->nextNode();
-			//this->getCurrentItem()->Out(ofst);
-			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
-		}
-		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
-		cout << result;
-		ofst << result;
-
-		ofst.close();
+		ofst << "Container is empty:\n";
+		cout << "Container is empty:\n";
 	}
+
+	for (int i = 0; i < this->size(); i++)
+	{
+		this->nextNode();
+		//this->getCurrentItem()->Out(ofst);
+		this->_current->_item->Writeinfo(*this->_current->_item, ofst);
+	}
+	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	cout << result;
+	ofst << result;
+
+	ofst.close();
 }
 void WisdomItem::OutOnlyAforysm(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	return;
 }
 void WisdomItem::OutOnlyPoslovica(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	return;
 }
 void WisdomItem::OutOnlyRiddle(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	return;
 }
 void Aforysm::OutOnlyAforysm(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
+
 	Out(ofst);
 	Out(cout);
 	ofst << this->getText() << endl;
@@ -304,39 +316,34 @@ void Aforysm::OutOnlyAforysm(ofstream &ofst)
 }
 void List::OutOnlyAforysm(ofstream &ofst)
 {
-	if (ofst.fail())
+	CheckOutputFile(ofst);
+
+	if (_size)
 	{
-		cerr << "Error: Unable to open output file" << endl;
-		return;
+		ofst << "Container is filled:\n";
+		cout << "Container is filled:\n";
 	}
 	else
 	{
-		if (_size)
-		{
-			ofst << "Container is filled:\n";
-			cout << "Container is filled:\n";
-		}
-		else
-		{
-			ofst << "Container is empty:\n";
-			cout << "Container is empty:\n";
-		}
-
-		for (int i = 0; i < this->size(); i++)
-		{
-			this->nextNode();
-			this->getCurrentItem()->OutOnlyAforysm(ofst);
-
-		}
-		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
-		cout << result;
-		ofst << result;
-
-		ofst.close();
+		ofst << "Container is empty:\n";
+		cout << "Container is empty:\n";
 	}
+
+	for (int i = 0; i < this->size(); i++)
+	{
+		this->nextNode();
+		this->getCurrentItem()->OutOnlyAforysm(ofst);
+
+	}
+	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	cout << result;
+	ofst << result;
+
+	ofst.close();
 }
 void Poslovica::OutOnlyPoslovica(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	Out(ofst);
 	Out(cout);
 	ofst << this->getText() << endl;
@@ -344,75 +351,66 @@ void Poslovica::OutOnlyPoslovica(ofstream &ofst)
 }
 void List::OutOnlyPoslovica(ofstream &ofst)
 {
-	if (ofst.fail())
+	CheckOutputFile(ofst);
+
+	if (_size)
 	{
-		cerr << "Error: Unable to open output file" << endl;
-		return;
+		ofst << "Container is filled:\n";
+		cout << "Container is filled:\n";
 	}
 	else
 	{
-		if (_size)
-		{
-			ofst << "Container is filled:\n";
-			cout << "Container is filled:\n";
-		}
-		else
-		{
-			ofst << "Container is empty:\n";
-			cout << "Container is empty:\n";
-		}
-
-		for (int i = 0; i < this->size(); i++)
-		{
-			this->nextNode();
-			this->getCurrentItem()->OutOnlyPoslovica(ofst);
-
-		}
-		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
-		cout << result;
-		ofst << result;
-
-		ofst.close();
+		ofst << "Container is empty:\n";
+		cout << "Container is empty:\n";
 	}
+
+	for (int i = 0; i < this->size(); i++)
+	{
+		this->nextNode();
+		this->getCurrentItem()->OutOnlyPoslovica(ofst);
+
+	}
+	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	cout << result;
+	ofst << result;
+
+	ofst.close();
+
 }
 
 void Riddle::OutOnlyRiddle(ofstream &ofst)
 {
+	CheckOutputFile(ofst);
 	Out(ofst);
 	Out(cout);
 	ofst << this->getText() << endl;
 	cout << this->getText() << endl;
 }
+
 void List::OutOnlyRiddle(ofstream &ofst)
 {
-	if (ofst.fail())
+	CheckOutputFile(ofst);
+	if (_size)
 	{
-		cerr << "Error: Unable to open output file" << endl;
-		return;
+		ofst << "Container is filled:\n";
+		cout << "Container is filled:\n";
 	}
 	else
 	{
-		if (_size)
-		{
-			ofst << "Container is filled:\n";
-			cout << "Container is filled:\n";
-		}
-		else
-		{
-			ofst << "Container is empty:\n";
-			cout << "Container is empty:\n";
-		}
-
-		for (int i = 0; i < this->size(); i++)
-		{
-			this->nextNode();
-			this->getCurrentItem()->OutOnlyRiddle(ofst);
-
-		}
-		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
-		cout << result;
-		ofst << result;
-
-		ofst.close();
+		ofst << "Container is empty:\n";
+		cout << "Container is empty:\n";
 	}
+
+	for (int i = 0; i < this->size(); i++)
+	{
+		this->nextNode();
+		this->getCurrentItem()->OutOnlyRiddle(ofst);
+
+	}
+	string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
+	cout << result;
+	ofst << result;
+
+	ofst.close();
+	
 }

@@ -1,3 +1,7 @@
-﻿  Dasha1_oop.cpp
-  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\3\Dasha1_oop\Debug\Dasha1_oop.exe
-  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\3\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
+﻿  func.cpp
+c:\users\евгений\documents\методы программирования\даша\5\dasha1_oop\dasha1_oop\func.cpp(68): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\евгений\documents\методы программирования\даша\5\dasha1_oop\dasha1_oop\func.cpp(193): warning C4101: a: неиспользованная локальная переменная
+c:\users\евгений\documents\методы программирования\даша\5\dasha1_oop\dasha1_oop\func.cpp(193): warning C4101: b: неиспользованная локальная переменная
+c:\users\евгений\documents\методы программирования\даша\5\dasha1_oop\dasha1_oop\func.cpp(260): warning C4101: newItem: неиспользованная локальная переменная
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\5\Dasha1_oop\Debug\Dasha1_oop.exe
+  Dasha1_oop.vcxproj -> C:\Users\Евгений\Documents\Методы программирования\Даша\5\Dasha1_oop\Debug\Dasha1_oop.pdb (Full PDB)
