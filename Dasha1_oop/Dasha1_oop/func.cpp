@@ -93,9 +93,6 @@ void Aforysm::Out(ostream &ofst)
 	ofst << "Following statement is an Aforysm. Its Author is: ";
 	ofst << Author << endl;
 	ofst << "Its content: ";
-	cout << "Following statement is an Aforysm. Its Author is: ";
-	cout << Author << endl;
-	cout << "Its content: ";
 }
 void Poslovica::In(ifstream &ifst)
 {
@@ -106,9 +103,6 @@ void Poslovica::Out(ostream &ofst)
 	ofst << "Folowing statement is Poslovica. Its Country is: ";
 	ofst << Country << endl;
 	ofst << "Its content: ";
-	cout << "Folowing statement is Poslovica. Its Country is: ";
-	cout << Country << endl;
-	cout << "Its content: ";
 }
 void Riddle::In(ifstream &ifst)
 {
@@ -119,9 +113,6 @@ void Riddle::Out(ostream &ofst)
 	ofst << "Following statement is an Riddle. Its Answer is: ";
 	ofst << Answer << endl;
 	ofst << "Its content: ";
-	cout << "Following statement is an Riddle. Its Answer is: ";
-	cout << Answer << endl;
-	cout << "Its content: ";
 }
 
 List::~List()
@@ -195,7 +186,7 @@ void List::Sort(int des)
 		{
 			if (ptr != _tail->_next)
 			{
-				if (des == 1)
+				if (des == 0)
 				{
 
 					if (!s->_item->Compare(*ptr->_item))
@@ -205,7 +196,7 @@ void List::Sort(int des)
 						ptr->_item = temp;
 					}
 				}
-				if (des == 2)
+				if (des == 1)
 				{
 					if (s->_item->Compare(*ptr->_item))
 					{
@@ -282,7 +273,7 @@ void List::Out(ofstream &ofst)
 		for (int i = 0; i < this->size(); i++)
 		{
 			this->nextNode();
-			this->getCurrentItem()->Out(ofst);
+			//this->getCurrentItem()->Out(ofst);
 			this->_current->_item->Writeinfo(*this->_current->_item, ofst);
 		}
 		string result = "----------------------------- \nThere are " + to_string(_size) + " objects.\n";
@@ -294,15 +285,15 @@ void List::Out(ofstream &ofst)
 }
 void WisdomItem::OutOnlyAforysm(ofstream &ofst)
 {
-	ofst << endl;
+	return;
 }
 void WisdomItem::OutOnlyPoslovica(ofstream &ofst)
 {
-	ofst << endl;
+	return;
 }
 void WisdomItem::OutOnlyRiddle(ofstream &ofst)
 {
-	ofst << endl;
+	return;
 }
 void Aforysm::OutOnlyAforysm(ofstream &ofst)
 {

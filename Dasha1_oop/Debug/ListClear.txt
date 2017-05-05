@@ -1,0 +1,3 @@
+Container is empty:
+----------------------------- 
+There are 0 objects.

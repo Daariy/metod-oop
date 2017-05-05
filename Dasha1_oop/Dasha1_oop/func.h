@@ -19,8 +19,6 @@ public:
 	int getGrade();
 	void setGrade(ifstream &ifst);
 	int CountSighns(char* Text);
-
-private:
 	char _text[256];
 	int _grade;
 protected:
@@ -36,7 +34,6 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyAforysm(ofstream &ofst);
-private:
 	char Author[256];
 };
 
@@ -48,7 +45,6 @@ public:
 	void In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
-private:
 	char Country[256];
 };
 
@@ -60,7 +56,6 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);
-private:
 	char Answer[256];
 };
 

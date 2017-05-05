@@ -1,8 +1,16 @@
 1
-Aforysm1
+Aforysm1!!!
 AforysmAuthor1
+3
+2
+Poslovica1..
+PoslovicaCountry1
 5
 2
 Poslovica1
 PoslovicaCountry1
 6
+3
+Riddle1
+RiddleAnswer1
+7

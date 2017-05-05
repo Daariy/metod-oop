@@ -1,7 +1,18 @@
-Контейнер заполнен:
-Это Афоризм. Его автор: Dasha
-Афоризм: qwerty
-Это пословица. Страна: Russia
-Пословица: abcdef
+Container is filled:
+Following statement is an Aforysm. Its Author is: Dasha
+Its content: qwerty
+The grade of the following statement is: 7
+Quantity of special symbols in the folowing wisdom item: 0
+Following statement is an Aforysm. Its Author is: Russia
+Its content: abcdef
+The grade of the following statement is: 7
+Quantity of special symbols in the folowing wisdom item: 0
+Following statement is an Aforysm. Its Author is: Dasha
+Its content: sadfasjdhgfkla
+The grade of the following statement is: 7
+Quantity of special symbols in the folowing wisdom item: 0
 ----------------------------- 
-Имеется 2 объекта(ов).
+There are 3 objects involving.
+Container is empty:
+----------------------------- 
+There are 0 objects involving.

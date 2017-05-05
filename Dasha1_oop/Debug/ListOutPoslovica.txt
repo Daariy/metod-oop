@@ -1,0 +1,5 @@
+Container is filled:
+Folowing statement is Poslovica. Its Country is: Russia
+Its content: abcdef.
+----------------------------- 
+There are 3 objects.

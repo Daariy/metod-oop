@@ -1,0 +1,9 @@
+Container is filled:
+Following statement is an Aforysm. Its Author is: Dasha
+Its content: qwerty..
+Quantity of special symbols in the folowing content: 2
+Following statement is an Aforysm. Its Author is: Dasha
+Its content: asdfgh..
+Quantity of special symbols in the folowing content: 2
+----------------------------- 
+There are 2 objects.

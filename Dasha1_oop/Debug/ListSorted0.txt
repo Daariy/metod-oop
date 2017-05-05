@@ -1,0 +1,12 @@
+Container is filled:
+Folowing statement is Poslovica. Its Country is: Russia
+Its content: abcdef.
+Quantity of special symbols in the folowing content: 1
+Following statement is an Aforysm. Its Author is: Dasha
+Its content: qwerty..
+Quantity of special symbols in the folowing content: 2
+Following statement is an Riddle. Its Answer is: Dasha
+Its content: sadfasjdhgfkla...
+Quantity of special symbols in the folowing content: 3
+----------------------------- 
+There are 3 objects.
