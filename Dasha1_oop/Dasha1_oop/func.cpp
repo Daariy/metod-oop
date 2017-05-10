@@ -413,3 +413,76 @@ void List::OutOnlyRiddle(ofstream &ofst)
 	ofst.close();
 	
 }
+
+void Aforysm::MultiMethod(WisdomItem *other, ofstream &ofst) {
+	other->MMAforysm(ofst);
+}
+
+void Aforysm::MMAforysm(ofstream &ofst) {
+	ofst << endl << "Aforysm and Aforysm" << endl << endl;
+	cout << endl << "Aforysm and Aforysm" << endl << endl;
+}
+
+void Aforysm::MMPoslovica(ofstream &ofst) {
+	ofst << endl << "Poslovica and Aforysm" << endl << endl;
+	cout << endl << "Poslovica and Aforysm" << endl << endl;
+}
+
+void Aforysm::MMRiddle(ofstream &ofst) {
+	ofst << endl << "Riddle and Aforysm" << endl << endl;
+	cout << endl << "Riddle and Aforysm" << endl << endl;
+}
+
+void Poslovica::MultiMethod(WisdomItem *other, ofstream &ofst) {
+	other->MMPoslovica(ofst);
+}
+
+void Poslovica::MMAforysm(ofstream &ofst) {
+	ofst << endl << "Aforysm and Poslovica" << endl << endl;
+	cout << endl << "Aforysm and Poslovica" << endl << endl;
+}
+
+void Poslovica::MMPoslovica(ofstream &ofst) {
+	ofst << endl << "Poslovica and Poslovica" << endl << endl;
+	cout << "Poslovica and Poslovica" << endl << endl;
+}
+
+void Poslovica::MMRiddle(ofstream &ofst) {
+	ofst << endl << "Riddle and Poslovica" << endl << endl;
+	cout << endl << "Riddle and Poslovica" << endl << endl;
+}
+
+void Riddle::MultiMethod(WisdomItem *other, ofstream &ofst) {
+	other->MMRiddle(ofst);
+}
+
+void Riddle::MMAforysm(ofstream &ofst) {
+	ofst << endl << "Aforysm and Riddle" << endl << endl;
+	cout << endl << "Aforysm and Riddle" << endl << endl;
+}
+
+void Riddle::MMPoslovica(ofstream &ofst) {
+	ofst << endl << "Poslovica and Riddle" << endl << endl;
+	cout << endl << "Poslovica and Riddle" << endl << endl;
+}
+
+void Riddle::MMRiddle(ofstream &ofst) {
+	ofst << endl << "Riddle and Riddle" << endl << endl;
+	cout << endl << "Riddle and Riddle" << endl << endl;
+}
+
+// Вызов мультиметода для элементов контейнера
+void List::MultiMethod(ofstream &ofst) {
+	ofst << "Multimethod." << endl;
+	List::node* temp = nullptr;
+	for (int i = 0; i < size; i++) {
+		current = current->next;
+		temp = current;
+		for (int j = 0; j < size; j++) {
+			current->item->MultiMethod(temp->item, ofst);
+			current->item->Writeinfo(*current->item, ofst);
+			temp->item->Writeinfo(*temp->item, ofst);
+			temp = temp->next;
+		}
+	}
+}

@@ -21,6 +21,10 @@ public:
 	int CountSighns(char* Text);
 	char text[256];
 	int grade;
+	virtual void MultiMethod(WisdomItem *other, ofstream &ofst) = 0;
+	virtual void MMAforysm(ofstream &ofst) = 0;
+	virtual void MMPoslovica(ofstream &ofst) = 0;
+	virtual void MMRiddle(ofstream &ofst) = 0;
 protected:
 	WisdomItem() {};
 	virtual ~WisdomItem() {};
@@ -34,6 +38,10 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyAforysm(ofstream &ofst);
+	void MultiMethod(WisdomItem *other, ofstream &ofst);
+	void MMAforysm(ofstream &ofst);
+	void MMPoslovica(ofstream &ofst);
+	void MMRiddle(ofstream &ofst);
 	char author[256];
 };
 
@@ -45,6 +53,10 @@ public:
 	void In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
+	void MultiMethod(WisdomItem *other, ofstream &ofst);
+	void MMAforysm(ofstream &ofst);
+	void MMPoslovica(ofstream &ofst);
+	void MMRiddle(ofstream &ofst);
 	char country[256];
 };
 
@@ -56,6 +68,10 @@ public:
 	void  In(ifstream &ifst);
 	void Out(ostream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);
+	void MultiMethod(WisdomItem *other, ofstream &ofst);
+	void MMAforysm(ofstream &ofst);
+	void MMPoslovica(ofstream &ofst);
+	void MMRiddle(ofstream &ofst);
 	char answer[256];
 };
 
@@ -75,6 +91,7 @@ public:
 	void OutOnlyAforysm(ofstream &ofst);
 	void OutOnlyPoslovica(ofstream &ofst);
 	void OutOnlyRiddle(ofstream &ofst);
+	void MultiMethod(ofstream &ofst);
 private:
 	struct node
 	{

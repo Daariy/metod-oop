@@ -1,18 +1,37 @@
-Container is filled:
-Following statement is an Aforysm. Its Author is: Dasha
+Multimethod.
+
+Aforysm and Aforysm
+
+Following statement is an Aforysm. Its author is: Dasha
 Its content: qwerty
-The grade of the following statement is: 7
-Quantity of special symbols in the folowing wisdom item: 0
-Following statement is an Aforysm. Its Author is: Russia
+Quantity of special symbols in the folowing content: 0
+Following statement is an Aforysm. Its author is: Dasha
+Its content: qwerty
+Quantity of special symbols in the folowing content: 0
+
+Aforysm and Poslovica
+
+Following statement is an Aforysm. Its author is: Dasha
+Its content: qwerty
+Quantity of special symbols in the folowing content: 0
+Folowing statement is Poslovica. Its country is: Russia
 Its content: abcdef
-The grade of the following statement is: 7
-Quantity of special symbols in the folowing wisdom item: 0
-Following statement is an Aforysm. Its Author is: Dasha
-Its content: sadfasjdhgfkla
-The grade of the following statement is: 7
-Quantity of special symbols in the folowing wisdom item: 0
------------------------------ 
-There are 3 objects involving.
-Container is empty:
------------------------------ 
-There are 0 objects involving.
+Quantity of special symbols in the folowing content: 0
+
+Poslovica and Poslovica
+
+Folowing statement is Poslovica. Its country is: Russia
+Its content: abcdef
+Quantity of special symbols in the folowing content: 0
+Folowing statement is Poslovica. Its country is: Russia
+Its content: abcdef
+Quantity of special symbols in the folowing content: 0
+
+Poslovica and Aforysm
+
+Folowing statement is Poslovica. Its country is: Russia
+Its content: abcdef
+Quantity of special symbols in the folowing content: 0
+Following statement is an Aforysm. Its author is: Dasha
+Its content: qwerty
+Quantity of special symbols in the folowing content: 0
